@@ -1,9 +1,16 @@
 package com.mtcompany.moviemanager.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movie")
+@Getter
+@Setter
 public class Movie {
 
     @Id
@@ -23,11 +30,21 @@ public class Movie {
     @Column(name = "img_path")
     private String imgPath;
 
+
+//chuj
 //    @ManyToOne(fetch = FetchType.EAGER,
 //            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 //    @JoinColumn(name = "director_id")
 //    private Director director;
 
+//    @ManyToMany(fetch = FetchType.LAZY,
+//    cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinTable(
+//            name = "movie_actor",
+//            joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id")
+//    )
+//    private List<Actor> actors;
 
     @Column(name = "director_id")
     private Long directorId;
@@ -40,9 +57,6 @@ public class Movie {
         this.directorId = directorId;
     }
 
-
-
-
     public Movie() {
     }
 
@@ -53,47 +67,15 @@ public class Movie {
         this.imgPath = imgPath;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public List<Actor> getActors() {
+//        return actors;
+//    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
-
-    public void setProductionYear(int productionYear) {
-        this.productionYear = productionYear;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImgPath() {
-        return imgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
-    }
-
-//    public Director getDirector() {
+//    public void setActors(List<Actor> actors) {
+//        this.actors = actors;
+//    }
+    //    public Director getDirector() {
 //        return director;
 //    }
 
@@ -110,4 +92,14 @@ public class Movie {
                 ", description='" + description + '\'' +
                 ", imgPath='" + imgPath + '\'' +'}';
     }
+
+//    public void addActor(Actor theActor){
+//        if(actors == null){
+//            actors = new ArrayList<>();
+//        }
+//
+//        actors.add(theActor);
+//
+//    }
+
 }

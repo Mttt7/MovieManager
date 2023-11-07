@@ -2,6 +2,8 @@ package com.mtcompany.moviemanager.rest;
 
 
 import com.mtcompany.moviemanager.entity.Movie;
+import com.mtcompany.moviemanager.entity.MovieActor;
+import com.mtcompany.moviemanager.service.ActorService;
 import com.mtcompany.moviemanager.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +15,12 @@ import java.util.List;
 public class MovieRestController {
 
     private MovieService movieService;
+    private ActorService actorService;
 
     @Autowired
-    public MovieRestController(MovieService theMovieService) {
-        movieService = theMovieService;
+    public MovieRestController(MovieService movieService, ActorService actorService) {
+        this.movieService = movieService;
+        this.actorService = actorService;
     }
 
     //GET ALL MOVIES
@@ -71,5 +75,12 @@ public class MovieRestController {
 
         return "Deleted Movie id - " + movieId;
     }
+
+
+    @GetMapping("/movies/actors/{actorId}")
+    public List<Movie> getMoviesByActorId(@PathVariable int actorId){
+        return this.actorService.getMoviesByActorId(actorId);
+    }
+
 
 }

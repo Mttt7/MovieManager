@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "director")
+@Table(name = "actor")
 @Getter
 @Setter
-public class Director {
+public class Actor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
 
     @Column(name = "first_name")
     private String firstName;
@@ -34,18 +34,20 @@ public class Director {
     @Column(name = "img_path")
     private String imgPath;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
-            //,mappedBy = "director"
-            )
-    @JoinColumn(name = "director_id")
-    private List<Movie> movies;
+//    @ManyToMany(fetch = FetchType.LAZY,
+//    cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinTable(
+//            name = "movie_actor",
+//            joinColumns = @JoinColumn(name = "actor_id",referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id")
+//    )
+//    private List<Movie> movies;
 
-
-    public Director() {
+    public Actor() {
     }
 
-    public Director(String firstName, String lastName, LocalDate birthDate, String description, String imgPath) {
+    public Actor(int id, String firstName, String lastName, LocalDate birthDate, String description, String imgPath) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -55,9 +57,18 @@ public class Director {
 
 
 
+
+//    public List<Movie> getMovies() {
+//        return movies;
+//    }
+
+//    public void setMovies(List<Movie> movies) {
+//        this.movies = movies;
+//    }
+
     @Override
     public String toString() {
-        return "Director{" +
+        return "Actor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -67,15 +78,17 @@ public class Director {
                 '}';
     }
 
-    //additional method
+//    public void addMovie(Movie movie){
+//        if(movies == null){
+//            movies = new ArrayList<>();
+//        }
+//
+//        movies.add(movie);
+//        //movie.addActor(this);
+//
+//    }
 
-    public void addMovie(Movie movie){
-        if(movies == null){
-            movies = new ArrayList<>();
-        }
 
-        movies.add(movie);
-        movie.setDirectorId((long) this.id);
-    }
+
 
 }

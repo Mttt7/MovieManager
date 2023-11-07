@@ -47,13 +47,13 @@ public class DirectorServiceImpl implements DirectorService{
 
     @Override
     public void deleteById(int theId) {
-        
+
         directorRepository.deleteById(theId);
     }
 
 
     public List<Movie> getMoviesByDirectorId(int theId){
-        Director tempDirector = findById(theId);
+        Director tempDirector = findById(theId); // add this.?
 
         List<Movie> movies = tempDirector.getMovies();
 
@@ -64,14 +64,10 @@ public class DirectorServiceImpl implements DirectorService{
     public Director addMovie(int directorId, int movieId) {
         Director tempDirector = this.findById(directorId);
         Movie tempMovie = movieService.findById(movieId);
+
         tempDirector.addMovie(tempMovie);
         directorRepository.save(tempDirector);
 
-
-        System.out.println("MOVIE");
-        System.out.println(tempMovie);
-        System.out.println("MOVIE");
-        //git do tego momentu
         return tempDirector;
     }
 
