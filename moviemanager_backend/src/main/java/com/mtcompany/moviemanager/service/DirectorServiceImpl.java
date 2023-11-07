@@ -13,9 +13,11 @@ public class DirectorServiceImpl implements DirectorService{
 
 
     private DirectorRepository directorRepository;
+    private MovieService movieService;
 
-    public DirectorServiceImpl(DirectorRepository directorRepository) {
+    public DirectorServiceImpl(DirectorRepository directorRepository, MovieService movieService) {
         this.directorRepository = directorRepository;
+        this.movieService = movieService;
     }
 
     @Override
@@ -45,6 +47,33 @@ public class DirectorServiceImpl implements DirectorService{
 
     @Override
     public void deleteById(int theId) {
+        
         directorRepository.deleteById(theId);
     }
+
+
+    public List<Movie> getMoviesByDirectorId(int theId){
+        Director tempDirector = findById(theId);
+
+        List<Movie> movies = tempDirector.getMovies();
+
+        return movies;
+    }
+
+    @Override
+    public Director addMovie(int directorId, int movieId) {
+        Director tempDirector = this.findById(directorId);
+        Movie tempMovie = movieService.findById(movieId);
+        tempDirector.addMovie(tempMovie);
+        directorRepository.save(tempDirector);
+
+
+        System.out.println("MOVIE");
+        System.out.println(tempMovie);
+        System.out.println("MOVIE");
+        //git do tego momentu
+        return tempDirector;
+    }
+
+
 }

@@ -31,8 +31,10 @@ public class Director {
     private String imgPath;
 
     @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-    mappedBy = "director")
+            cascade = CascadeType.ALL
+            //,mappedBy = "director"
+            )
+    @JoinColumn(name = "director_id")
     private List<Movie> movies;
 
 
@@ -119,9 +121,11 @@ public class Director {
 
     public void addMovie(Movie movie){
         if(movies == null){
-            movies = new ArrayList<Movie>();
+            movies = new ArrayList<>();
         }
+
         movies.add(movie);
+        movie.setDirectorId((long) this.id);
     }
 
 }

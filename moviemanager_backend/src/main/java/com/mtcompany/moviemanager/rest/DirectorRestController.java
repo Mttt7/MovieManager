@@ -65,6 +65,18 @@ public class DirectorRestController {
         return "Deleted Director id - " + directorId;
     }
 
+    //---------------------------------------------------------
+
+    @GetMapping("directors/{directorId}/movies")
+    public List<Movie> getMoviesByDirectorId(@PathVariable int directorId){
+        return directorService.getMoviesByDirectorId(directorId);
+    }
+
+    @PatchMapping("directors/{directorId}/{movieId}")
+    public Director addMovieToDirector(@PathVariable int directorId,@PathVariable int movieId){
+        return directorService.addMovie(directorId,movieId);
+    }
+
 
 
 

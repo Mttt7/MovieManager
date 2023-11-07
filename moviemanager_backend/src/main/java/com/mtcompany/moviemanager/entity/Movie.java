@@ -23,10 +23,24 @@ public class Movie {
     @Column(name = "img_path")
     private String imgPath;
 
-    @ManyToOne(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST,CascadeType.DETACH})
-    @JoinColumn(name = "director_id")
-    private Director director;
+//    @ManyToOne(fetch = FetchType.EAGER,
+//            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinColumn(name = "director_id")
+//    private Director director;
+
+
+    @Column(name = "director_id")
+    private Long directorId;
+
+    public Long getDirectorId() {
+        return directorId;
+    }
+
+    public void setDirectorId(Long directorId) {
+        this.directorId = directorId;
+    }
+
+
 
 
     public Movie() {
@@ -79,13 +93,13 @@ public class Movie {
         this.imgPath = imgPath;
     }
 
-    public Director getDirector() {
-        return director;
-    }
+//    public Director getDirector() {
+//        return director;
+//    }
 
-    public void setDirector(Director director) {
-        this.director = director;
-    }
+//    public void setDirector(Director director) {
+//        this.director = director;
+//    }
 
     @Override
     public String toString() {
