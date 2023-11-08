@@ -77,10 +77,7 @@ public class MovieRestController {
     }
 
 
-    @GetMapping("/movies/actors/{actorId}")
-    public List<Movie> getMoviesByActorId(@PathVariable int actorId){
-        return this.actorService.getMoviesByActorId(actorId);
-    }
+
 
 
 }

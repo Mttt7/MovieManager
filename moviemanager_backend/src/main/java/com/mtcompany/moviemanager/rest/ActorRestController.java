@@ -2,6 +2,7 @@ package com.mtcompany.moviemanager.rest;
 
 import com.mtcompany.moviemanager.entity.Actor;
 import com.mtcompany.moviemanager.entity.Actor;
+import com.mtcompany.moviemanager.entity.Movie;
 import com.mtcompany.moviemanager.service.ActorService;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,6 +66,13 @@ public class ActorRestController {
         actorService.deleteById(actorId);
         return "Deleted Actor id - " + actorId;
     }
+
+    //GET MOVIES ASSOCIATED TO ACTOR
+    @GetMapping("/actors/{actorId}/movies")
+    public List<Movie> getMoviesByActorId(@PathVariable int actorId){
+        return this.actorService.getMoviesByActorId(actorId);
+    }
+
 
     //ADD MOVIE TO AN ACTOR
     @PatchMapping("/actors/{actorId}/{movieId}")
