@@ -67,14 +67,24 @@ public class DirectorRestController {
 
     //---------------------------------------------------------
 
+    //GET MOVIES OF DIRECTOR
     @GetMapping("directors/{directorId}/movies")
     public List<Movie> getMoviesByDirectorId(@PathVariable int directorId){
         return directorService.getMoviesByDirectorId(directorId);
     }
 
+    //ADD MOVIE TO DIRECTOR
     @PatchMapping("directors/{directorId}/{movieId}")
     public Director addMovieToDirector(@PathVariable int directorId,@PathVariable int movieId){
         return directorService.addMovie(directorId,movieId);
+    }
+
+    //REMOVE MOVIE FROM DIRECTOR
+
+    @DeleteMapping("directors/{directorId}/{movieId}")
+    public String deleteMovieFromDirector(@PathVariable int directorId,@PathVariable int movieId){
+
+        return directorService.deleteMovieFromDirector(directorId,movieId);
     }
 
 

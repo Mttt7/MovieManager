@@ -17,4 +17,6 @@ public interface ActorService {
     public List<Movie> getMoviesByActorId(int theId);
 
     public Actor addMovie(int actorId,int movieId);
+
+    String removeMovieFromActor(int actorId, int movieId);
 }

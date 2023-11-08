@@ -78,4 +78,8 @@ public class Director {
         movie.setDirectorId((long) this.id);
     }
 
+    public void deleteMovie(Movie movie){
+        movies.remove(movie);
+    }
+
 }

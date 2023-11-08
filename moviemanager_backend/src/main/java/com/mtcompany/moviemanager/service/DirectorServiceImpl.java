@@ -3,7 +3,9 @@ package com.mtcompany.moviemanager.service;
 import com.mtcompany.moviemanager.dao.DirectorRepository;
 import com.mtcompany.moviemanager.entity.Director;
 import com.mtcompany.moviemanager.entity.Movie;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -69,6 +71,25 @@ public class DirectorServiceImpl implements DirectorService{
         directorRepository.save(tempDirector);
 
         return tempDirector;
+    }
+
+    @Override
+    public String deleteMovieFromDirector(int directorId, int movieId) {
+        Director tempDirector = this.findById(directorId);
+        Movie tempMovie = movieService.findById(movieId);
+
+        boolean exists = tempDirector.getMovies().stream().anyMatch(m ->m==tempMovie);
+
+        if(exists){
+            tempDirector.deleteMovie(tempMovie);
+            tempMovie.setDirectorId(null);
+        }else{
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found or has already been deleted");
+        }
+
+        directorRepository.save(tempDirector);
+
+        return "Movie id-"+movieId+" deleted from director id-"+directorId;
     }
 
 

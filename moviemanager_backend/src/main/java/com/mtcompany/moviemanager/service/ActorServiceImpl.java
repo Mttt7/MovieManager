@@ -87,4 +87,21 @@ public class ActorServiceImpl implements ActorService{
 
         return tempActor;
     }
+
+    @Override
+    public String removeMovieFromActor(int actorId, int movieId) {
+        Actor tempActor = null;
+        Movie tempMovie = null;
+        boolean exists = movieActorRepository.existsByActor_IdAndMovie_Id(actorId,movieId);
+
+        if (exists) {
+            System.out.println("EXISTS!!!!");
+            MovieActor tempMovieActor = movieActorRepository.findByActor_IdAndMovie_Id(actorId,movieId);
+            movieActorRepository.delete(tempMovieActor);
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Actor is no assigned to this movie or has  already been deleted ");
+        }
+
+        return "Movie id-"+movieId+" removed from actor id-"+actorId;
+    }
 }

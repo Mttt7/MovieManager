@@ -67,12 +67,15 @@ public class ActorRestController {
     }
 
     //ADD MOVIE TO AN ACTOR
-
     @PatchMapping("/actors/{actorId}/{movieId}")
     public Actor addMovieToActor(@PathVariable int actorId, @PathVariable int movieId){
-
-
         return actorService.addMovie(actorId,movieId);
+    }
+
+    //REMOVE MOVIE FROM AN ACTOR
+    @DeleteMapping("/actors/{actorId}/{movieId}")
+    public String removeMovieFromActor(@PathVariable int actorId, @PathVariable int movieId){
+        return actorService.removeMovieFromActor(actorId,movieId);
     }
 
 }

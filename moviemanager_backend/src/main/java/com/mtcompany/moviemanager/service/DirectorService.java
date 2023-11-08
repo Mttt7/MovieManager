@@ -18,4 +18,6 @@ public interface DirectorService {
     public List<Movie> getMoviesByDirectorId(int theId);
 
     public Director addMovie(int directorId,int movieId);
+
+    String deleteMovieFromDirector(int directorId, int movieId);
 }

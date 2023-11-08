@@ -31,21 +31,6 @@ public class Movie {
     private String imgPath;
 
 
-//chuj
-//    @ManyToOne(fetch = FetchType.EAGER,
-//            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinColumn(name = "director_id")
-//    private Director director;
-
-//    @ManyToMany(fetch = FetchType.LAZY,
-//    cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "movie_actor",
-//            joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id")
-//    )
-//    private List<Actor> actors;
-
     @Column(name = "director_id")
     private Long directorId;
 
@@ -67,22 +52,6 @@ public class Movie {
         this.imgPath = imgPath;
     }
 
-
-//    public List<Actor> getActors() {
-//        return actors;
-//    }
-
-//    public void setActors(List<Actor> actors) {
-//        this.actors = actors;
-//    }
-    //    public Director getDirector() {
-//        return director;
-//    }
-
-//    public void setDirector(Director director) {
-//        this.director = director;
-//    }
-
     @Override
     public String toString() {
         return "Movie{" +
@@ -92,14 +61,5 @@ public class Movie {
                 ", description='" + description + '\'' +
                 ", imgPath='" + imgPath + '\'' +'}';
     }
-
-//    public void addActor(Actor theActor){
-//        if(actors == null){
-//            actors = new ArrayList<>();
-//        }
-//
-//        actors.add(theActor);
-//
-//    }
 
 }

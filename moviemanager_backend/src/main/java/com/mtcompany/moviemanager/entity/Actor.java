@@ -18,7 +18,6 @@ public class Actor {
     @Column(name = "id")
     private int id;
 
-
     @Column(name = "first_name")
     private String firstName;
 
@@ -34,15 +33,6 @@ public class Actor {
     @Column(name = "img_path")
     private String imgPath;
 
-//    @ManyToMany(fetch = FetchType.LAZY,
-//    cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinTable(
-//            name = "movie_actor",
-//            joinColumns = @JoinColumn(name = "actor_id",referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id")
-//    )
-//    private List<Movie> movies;
-
     public Actor() {
     }
 
@@ -55,17 +45,6 @@ public class Actor {
         this.imgPath = imgPath;
     }
 
-
-
-
-//    public List<Movie> getMovies() {
-//        return movies;
-//    }
-
-//    public void setMovies(List<Movie> movies) {
-//        this.movies = movies;
-//    }
-
     @Override
     public String toString() {
         return "Actor{" +
@@ -77,18 +56,5 @@ public class Actor {
                 ", imgPath='" + imgPath + '\'' +
                 '}';
     }
-
-//    public void addMovie(Movie movie){
-//        if(movies == null){
-//            movies = new ArrayList<>();
-//        }
-//
-//        movies.add(movie);
-//        //movie.addActor(this);
-//
-//    }
-
-
-
 
 }
