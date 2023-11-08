@@ -34,13 +34,17 @@ public class Movie {
     @Column(name = "director_id")
     private Long directorId;
 
-    public Long getDirectorId() {
-        return directorId;
-    }
+    @Column(name = "category_id")
+    private Long categoryId;
 
-    public void setDirectorId(Long directorId) {
-        this.directorId = directorId;
-    }
+
+//    public Long getDirectorId() {
+//        return directorId;
+//    }
+//
+//    public void setDirectorId(Long directorId) {
+//        this.directorId = directorId;
+//    }
 
     public Movie() {
     }
