@@ -22,6 +22,12 @@ public class CategoryRestController {
         return categoryService.findAll();
     }
 
+    @GetMapping("/categories/{categoryId}")
+    public Category findById(@PathVariable int categoryId){
+        return categoryService.findById(categoryId);
+    }
+
+
     /*
 
     //ADD CATEGORY

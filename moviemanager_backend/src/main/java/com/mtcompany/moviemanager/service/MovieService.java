@@ -15,5 +15,5 @@ public interface MovieService {
     void deleteById(int theId);
 
 
-
+    Movie addCategoryToMovie(int movieId, int categoryId);
 }

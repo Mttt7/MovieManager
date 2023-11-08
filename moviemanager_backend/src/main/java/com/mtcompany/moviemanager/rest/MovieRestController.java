@@ -1,6 +1,7 @@
 package com.mtcompany.moviemanager.rest;
 
 
+import com.mtcompany.moviemanager.entity.Director;
 import com.mtcompany.moviemanager.entity.Movie;
 import com.mtcompany.moviemanager.entity.MovieActor;
 import com.mtcompany.moviemanager.service.ActorService;
@@ -76,7 +77,11 @@ public class MovieRestController {
         return "Deleted Movie id - " + movieId;
     }
 
-
+    //ADD CATEGORY TO A MOVIE
+    @PatchMapping("movies/{movieId}/{categoryId}")
+    public Movie addCategoryToMovie(@PathVariable int movieId, @PathVariable int categoryId){
+        return movieService.addCategoryToMovie(movieId,categoryId);
+    }
 
 
 
