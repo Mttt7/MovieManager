@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -68,7 +69,14 @@ public class DirectorServiceImpl implements DirectorService{
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Movie is already added to this Director");
         }
 
-        tempDirector.addMovie(tempMovie);
+
+        if(tempDirector.getMovies() == null){
+            tempDirector.setMovies(new ArrayList<>());
+        }
+        tempDirector.getMovies().add(tempMovie);
+        tempMovie.setDirectorId(directorId);
+
+
         directorRepository.save(tempDirector);
 
         return tempDirector;
@@ -82,7 +90,7 @@ public class DirectorServiceImpl implements DirectorService{
         boolean exists = tempDirector.getMovies().stream().anyMatch(m ->m==tempMovie);
 
         if(exists){
-            tempDirector.deleteMovie(tempMovie);
+            tempDirector.getMovies().remove(tempMovie);
             tempMovie.setDirectorId(null);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found or has already been deleted");

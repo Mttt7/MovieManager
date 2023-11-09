@@ -63,15 +63,11 @@ public class Director {
                 '}';
     }
 
-    public void addMovie(Movie movie){
-        if(movies == null){
-            movies = new ArrayList<>();
-        }
 
-        movies.add(movie);
-        movie.setDirectorId(this.id);
-    }
-    public void deleteMovie(Movie movie){
-        movies.remove(movie);
-    }
+
+//    public void deleteMovie(Movie movie){
+//        movies.remove(movie);
+//    }
+
+    //-----------------------------------------------------
 }
