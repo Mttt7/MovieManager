@@ -38,10 +38,8 @@ public class DirectorRestController {
     //ADD NEW DIRECTOR
     @PostMapping("/directors")
     public Director addDirector(@RequestBody Director theDirector){
-        // also just in case they pass an id in JSON ... set id to 0
-        // this is to force a save of new item ... instead of update
-
         Director dbDirector = directorService.save(theDirector);
+
         return dbDirector;
     }
 
@@ -49,6 +47,7 @@ public class DirectorRestController {
     @PutMapping("/directors")
     public Director updateDirector(@RequestBody Director theDirector){
         Director dbDirector = directorService.save(theDirector);
+
         return dbDirector;
     }
 
@@ -60,11 +59,11 @@ public class DirectorRestController {
         if (tempDirector == null) {
             throw new RuntimeException("Director id not found - " + directorId);
         }
+
         directorService.deleteById(directorId);
+
         return "Deleted Director id - " + directorId;
     }
-
-    //---------------------------------------------------------
 
     //GET MOVIES OF DIRECTOR
     @GetMapping("directors/{directorId}/movies")
@@ -79,10 +78,8 @@ public class DirectorRestController {
     }
 
     //REMOVE MOVIE FROM DIRECTOR
-
     @DeleteMapping("directors/{directorId}/{movieId}")
     public String deleteMovieFromDirector(@PathVariable Long directorId,@PathVariable Long movieId){
-
         return directorService.deleteMovieFromDirector(directorId,movieId);
     }
 

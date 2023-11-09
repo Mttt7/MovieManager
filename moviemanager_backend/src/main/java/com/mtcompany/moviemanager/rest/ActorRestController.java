@@ -42,14 +42,12 @@ public class ActorRestController {
         return dbActor;
     }
 
-
     //UPDATE ACTOR
     @PutMapping("/actors")
     public Actor updateActor(@RequestBody Actor theActor){
         Actor dbActor = actorService.save(theActor);
         return dbActor;
     }
-
 
     //DELETE ACTOR
     @DeleteMapping("/actors/{actorId}")
@@ -69,7 +67,6 @@ public class ActorRestController {
         return this.actorService.getMoviesByActorId(actorId);
     }
 
-
     //ADD MOVIE TO AN ACTOR
     @PatchMapping("/actors/{actorId}/{movieId}")
     public Actor addMovieToActor(@PathVariable Long actorId, @PathVariable Long movieId){
@@ -81,5 +78,4 @@ public class ActorRestController {
     public String removeMovieFromActor(@PathVariable Long actorId, @PathVariable Long movieId){
         return actorService.removeMovieFromActor(actorId,movieId);
     }
-
 }

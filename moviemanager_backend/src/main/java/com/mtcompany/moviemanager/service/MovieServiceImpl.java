@@ -66,7 +66,6 @@ public class MovieServiceImpl implements MovieService{
 
         return tempMovie;
     }
-
     @Override
     public List<Actor> getActorsByMovieId(Long movieId) {
         return this.movieActorRepository.findByMovie_Id(movieId).stream().map(MovieActor::getActor).collect(Collectors.toList());

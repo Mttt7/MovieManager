@@ -70,14 +70,11 @@ public class MovieRestController {
             throw new RuntimeException("Movie id not found - " + movieId);
         }
 
-        //----------
-
         List<Actor> actors = movieService.getActorsByMovieId(movieId);
         for (Actor a:
              actors) {
             actorService.removeMovieFromActor(a.getId(),movieId);
         }
-       //-----------
         movieService.deleteById(movieId);
 
         return "Deleted Movie id - " + movieId;

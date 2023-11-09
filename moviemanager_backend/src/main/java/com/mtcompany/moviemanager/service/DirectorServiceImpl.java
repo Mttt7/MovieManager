@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class DirectorServiceImpl implements DirectorService{
 
-
     private DirectorRepository directorRepository;
     private MovieService movieService;
 
@@ -49,14 +48,12 @@ public class DirectorServiceImpl implements DirectorService{
 
     @Override
     public void deleteById(Long theId) {
-
         directorRepository.deleteById(theId);
     }
 
 
     public List<Movie> getMoviesByDirectorId(Long theId){
         Director tempDirector = findById(theId); // add this.?
-
         List<Movie> movies = tempDirector.getMovies();
 
         return movies;
@@ -64,7 +61,6 @@ public class DirectorServiceImpl implements DirectorService{
 
     @Override
     public Director addMovie(Long directorId, Long movieId) {
-
         Director tempDirector = this.findById(directorId);
         Movie tempMovie = movieService.findById(movieId);
 

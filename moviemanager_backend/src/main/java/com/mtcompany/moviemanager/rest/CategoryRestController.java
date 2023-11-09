@@ -11,7 +11,6 @@ import java.util.List;
 public class CategoryRestController {
 
     private CategoryService categoryService;
-
     public CategoryRestController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
@@ -22,20 +21,17 @@ public class CategoryRestController {
         return categoryService.findAll();
     }
 
+    //GET CATEGORY BY ID
     @GetMapping("/categories/{categoryId}")
     public Category findById(@PathVariable Long categoryId){
         return categoryService.findById(categoryId);
     }
 
-
     /*
-
     //ADD CATEGORY
     @PostMapping("/categories")
     public Category addCategory(@RequestBody Category category){
         return categoryService.createNewCategory(category);
     }
-
     */
-
 }

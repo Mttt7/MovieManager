@@ -15,7 +15,6 @@ public interface MovieService {
 
     void deleteById(Long theId);
 
-
     Movie addCategoryToMovie(Long movieId, Long categoryId);
 
     List<Actor> getActorsByMovieId(Long movieId);

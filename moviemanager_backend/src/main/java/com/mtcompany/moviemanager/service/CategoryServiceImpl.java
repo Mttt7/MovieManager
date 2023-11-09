@@ -25,7 +25,6 @@ public class CategoryServiceImpl implements CategoryService{
     @Override
     public Category findById(Long theId) {
         Optional<Category> result = categoryRepository.findById(theId);
-
         Category theCategory = null;
 
         if(result.isPresent()){
@@ -35,7 +34,6 @@ public class CategoryServiceImpl implements CategoryService{
         }
 
         return theCategory;
-
     }
 
     @Override

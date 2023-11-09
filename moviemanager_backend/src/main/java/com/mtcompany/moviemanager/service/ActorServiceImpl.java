@@ -25,8 +25,6 @@ public class ActorServiceImpl implements ActorService{
     private final MovieService movieService;
 
 
-
-
     @Override
     public List<Actor> findAll() {
         return actorRepository.findAll();
@@ -62,15 +60,12 @@ public class ActorServiceImpl implements ActorService{
         return this.movieActorRepository.findByActor_Id(theId).stream().map(MovieActor::getMovie).collect(Collectors.toList());
     }
 
-
-    //do seriwsu movieactor
     public List<MovieActor> getAll(){
         return this.movieActorRepository.findAll();
     }
 
     @Override
     public Actor addMovie(Long actorId, Long movieId) {
-
         Actor tempActor = null;
         Movie tempMovie = null;
         boolean exists = movieActorRepository.existsByActor_IdAndMovie_Id(actorId,movieId);

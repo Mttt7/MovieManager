@@ -36,11 +36,9 @@ public class Director {
 
     @OneToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
-            //,mappedBy = "director"
             )
     @JoinColumn(name = "director_id")
     private List<Movie> movies;
-
 
     public Director() {
     }
@@ -52,8 +50,6 @@ public class Director {
         this.description = description;
         this.imgPath = imgPath;
     }
-
-
 
     @Override
     public String toString() {
@@ -67,8 +63,6 @@ public class Director {
                 '}';
     }
 
-    //additional method
-
     public void addMovie(Movie movie){
         if(movies == null){
             movies = new ArrayList<>();
@@ -77,9 +71,7 @@ public class Director {
         movies.add(movie);
         movie.setDirectorId(this.id);
     }
-
     public void deleteMovie(Movie movie){
         movies.remove(movie);
     }
-
 }

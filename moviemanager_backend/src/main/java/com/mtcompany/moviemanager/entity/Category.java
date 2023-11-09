@@ -20,7 +20,6 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-
     @OneToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}
     )

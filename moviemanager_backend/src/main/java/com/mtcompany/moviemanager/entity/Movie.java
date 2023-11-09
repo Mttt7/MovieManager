@@ -37,7 +37,6 @@ public class Movie {
     @Column(name = "category_id")
     private Long categoryId;
 
-
     public Movie() {
     }
 
@@ -57,5 +56,4 @@ public class Movie {
                 ", description='" + description + '\'' +
                 ", imgPath='" + imgPath + '\'' +'}';
     }
-
 }
