@@ -23,7 +23,7 @@ public class CategoryRestController {
     }
 
     @GetMapping("/categories/{categoryId}")
-    public Category findById(@PathVariable int categoryId){
+    public Category findById(@PathVariable Long categoryId){
         return categoryService.findById(categoryId);
     }
 

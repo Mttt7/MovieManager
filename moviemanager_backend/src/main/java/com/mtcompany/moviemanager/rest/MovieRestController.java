@@ -32,7 +32,7 @@ public class MovieRestController {
 
     //GET MOVIE BY ID
     @GetMapping("/movies/{movieId}")
-    public Movie findMovieById(@PathVariable int movieId){
+    public Movie findMovieById(@PathVariable Long movieId){
         Movie theMovie = movieService.findById(movieId);
 
         if(theMovie == null){
@@ -46,9 +46,6 @@ public class MovieRestController {
     //ADD NEW MOVIE
     @PostMapping("/movies")
     public Movie addMovie(@RequestBody Movie theMovie){
-        // also just in case they pass an id in JSON ... set id to 0
-        // this is to force a save of new item ... instead of update
-        theMovie.setId(0);
 
         Movie dbMovie = movieService.save(theMovie);
         return dbMovie;
@@ -65,7 +62,7 @@ public class MovieRestController {
     //DELETE MOVIE
 
     @DeleteMapping("/movies/{movieId}")
-    public String deleteMovie(@PathVariable int movieId){
+    public String deleteMovie(@PathVariable Long movieId){
         Movie tempMovie = movieService.findById(movieId);
 
         if (tempMovie == null) {
@@ -79,7 +76,7 @@ public class MovieRestController {
 
     //ADD CATEGORY TO A MOVIE
     @PatchMapping("movies/{movieId}/{categoryId}")
-    public Movie addCategoryToMovie(@PathVariable int movieId, @PathVariable int categoryId){
+    public Movie addCategoryToMovie(@PathVariable Long movieId, @PathVariable Long categoryId){
         return movieService.addCategoryToMovie(movieId,categoryId);
     }
 

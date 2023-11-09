@@ -7,11 +7,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MovieActorRepository extends JpaRepository<MovieActor,Integer> {
+public interface MovieActorRepository extends JpaRepository<MovieActor,Long> {
 
-    List<MovieActor> findByActor_Id(int id);
+    List<MovieActor> findByActor_Id(Long id);
 
-    boolean existsByActor_IdAndMovie_Id(int actorId, int movieId);
+    boolean existsByActor_IdAndMovie_Id(Long actorId, Long movieId);
 
-    MovieActor findByActor_IdAndMovie_Id(int actorId, int movieId);
+    MovieActor findByActor_IdAndMovie_Id(Long actorId, Long movieId);
 }

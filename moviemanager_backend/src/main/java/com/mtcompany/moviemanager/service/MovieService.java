@@ -8,12 +8,12 @@ public interface MovieService {
 
     List<Movie> findAll();
 
-    Movie findById(int theId);
+    Movie findById(Long theId);
 
     Movie save(Movie theMovie);
 
-    void deleteById(int theId);
+    void deleteById(Long theId);
 
 
-    Movie addCategoryToMovie(int movieId, int categoryId);
+    Movie addCategoryToMovie(Long movieId, Long categoryId);
 }

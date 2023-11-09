@@ -25,7 +25,7 @@ public class DirectorRestController {
 
     //GET DIRECTOR BY ID
     @GetMapping("/directors/{directorId}")
-    public Director findDirectorById(@PathVariable int directorId){
+    public Director findDirectorById(@PathVariable Long directorId){
         Director theDirector = directorService.findById(directorId);
 
         if(theDirector == null){
@@ -40,7 +40,6 @@ public class DirectorRestController {
     public Director addDirector(@RequestBody Director theDirector){
         // also just in case they pass an id in JSON ... set id to 0
         // this is to force a save of new item ... instead of update
-        theDirector.setId(0);
 
         Director dbDirector = directorService.save(theDirector);
         return dbDirector;
@@ -55,7 +54,7 @@ public class DirectorRestController {
 
     //DELETE DIRECTOR
     @DeleteMapping("/directors/{directorId}")
-    public String deleteDirector(@PathVariable int directorId){
+    public String deleteDirector(@PathVariable Long directorId){
         Director tempDirector = directorService.findById(directorId);
 
         if (tempDirector == null) {
@@ -69,20 +68,20 @@ public class DirectorRestController {
 
     //GET MOVIES OF DIRECTOR
     @GetMapping("directors/{directorId}/movies")
-    public List<Movie> getMoviesByDirectorId(@PathVariable int directorId){
+    public List<Movie> getMoviesByDirectorId(@PathVariable Long directorId){
         return directorService.getMoviesByDirectorId(directorId);
     }
 
     //ADD MOVIE TO DIRECTOR
     @PatchMapping("directors/{directorId}/{movieId}")
-    public Director addMovieToDirector(@PathVariable int directorId,@PathVariable int movieId){
+    public Director addMovieToDirector(@PathVariable Long directorId,@PathVariable Long movieId){
         return directorService.addMovie(directorId,movieId);
     }
 
     //REMOVE MOVIE FROM DIRECTOR
 
     @DeleteMapping("directors/{directorId}/{movieId}")
-    public String deleteMovieFromDirector(@PathVariable int directorId,@PathVariable int movieId){
+    public String deleteMovieFromDirector(@PathVariable Long directorId,@PathVariable Long movieId){
 
         return directorService.deleteMovieFromDirector(directorId,movieId);
     }

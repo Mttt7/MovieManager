@@ -26,7 +26,7 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public Movie findById(int theId) {
+    public Movie findById(Long theId) {
         Optional<Movie> result = movieRepository.findById(theId);
 
         Movie theMovie = null;
@@ -46,12 +46,12 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteById(Long theId) {
         movieRepository.deleteById(theId);
     }
 
     @Override
-    public Movie addCategoryToMovie(int movieId, int categoryId) {
+    public Movie addCategoryToMovie(Long movieId, Long categoryId) {
         Movie tempMovie = this.findById(movieId);
         Category tempCategory = categoryService.findById(categoryId);
 

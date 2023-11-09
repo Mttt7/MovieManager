@@ -17,7 +17,7 @@ public class Director {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -75,7 +75,7 @@ public class Director {
         }
 
         movies.add(movie);
-        movie.setDirectorId((long) this.id);
+        movie.setDirectorId(this.id);
     }
 
     public void deleteMovie(Movie movie){

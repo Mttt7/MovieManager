@@ -33,7 +33,7 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public Actor findById(int theId) {
+    public Actor findById(Long theId) {
         Optional<Actor> result = actorRepository.findById(theId);
 
         Actor theActor = null;
@@ -53,12 +53,12 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteById(Long theId) {
         actorRepository.deleteById(theId);
     }
 
     @Override
-    public List<Movie> getMoviesByActorId(int theId) {
+    public List<Movie> getMoviesByActorId(Long theId) {
         return this.movieActorRepository.findByActor_Id(theId).stream().map(MovieActor::getMovie).collect(Collectors.toList());
     }
 
@@ -69,7 +69,7 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public Actor addMovie(int actorId, int movieId) {
+    public Actor addMovie(Long actorId, Long movieId) {
 
         Actor tempActor = null;
         Movie tempMovie = null;
@@ -89,7 +89,7 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public String removeMovieFromActor(int actorId, int movieId) {
+    public String removeMovieFromActor(Long actorId, Long movieId) {
         Actor tempActor = null;
         Movie tempMovie = null;
         boolean exists = movieActorRepository.existsByActor_IdAndMovie_Id(actorId,movieId);

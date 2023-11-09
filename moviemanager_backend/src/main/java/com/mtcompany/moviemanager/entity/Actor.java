@@ -15,8 +15,9 @@ import java.util.List;
 public class Actor {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,8 +37,7 @@ public class Actor {
     public Actor() {
     }
 
-    public Actor(int id, String firstName, String lastName, LocalDate birthDate, String description, String imgPath) {
-        this.id = id;
+    public Actor( String firstName, String lastName, LocalDate birthDate, String description, String imgPath) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;

@@ -16,7 +16,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "title")
     private String title;
@@ -37,14 +37,6 @@ public class Movie {
     @Column(name = "category_id")
     private Long categoryId;
 
-
-//    public Long getDirectorId() {
-//        return directorId;
-//    }
-//
-//    public void setDirectorId(Long directorId) {
-//        this.directorId = directorId;
-//    }
 
     public Movie() {
     }

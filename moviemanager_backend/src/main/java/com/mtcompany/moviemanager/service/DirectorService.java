@@ -9,15 +9,15 @@ public interface DirectorService {
 
     List<Director> findAll();
 
-    Director findById(int theId);
+    Director findById(Long theId);
 
     Director save(Director theDirector);
 
-    void deleteById(int theId);
+    void deleteById(Long theId);
 
-    public List<Movie> getMoviesByDirectorId(int theId);
+    public List<Movie> getMoviesByDirectorId(Long theId);
 
-    public Director addMovie(int directorId,int movieId);
+    public Director addMovie(Long directorId,Long movieId);
 
-    String deleteMovieFromDirector(int directorId, int movieId);
+    String deleteMovieFromDirector(Long directorId, Long movieId);
 }

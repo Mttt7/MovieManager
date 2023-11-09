@@ -28,7 +28,7 @@ public class DirectorServiceImpl implements DirectorService{
     }
 
     @Override
-    public Director findById(int theId) {
+    public Director findById(Long theId) {
         Optional<Director> result = directorRepository.findById(theId);
 
         Director theDirector = null;
@@ -48,13 +48,13 @@ public class DirectorServiceImpl implements DirectorService{
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteById(Long theId) {
 
         directorRepository.deleteById(theId);
     }
 
 
-    public List<Movie> getMoviesByDirectorId(int theId){
+    public List<Movie> getMoviesByDirectorId(Long theId){
         Director tempDirector = findById(theId); // add this.?
 
         List<Movie> movies = tempDirector.getMovies();
@@ -63,9 +63,14 @@ public class DirectorServiceImpl implements DirectorService{
     }
 
     @Override
-    public Director addMovie(int directorId, int movieId) {
+    public Director addMovie(Long directorId, Long movieId) {
+
         Director tempDirector = this.findById(directorId);
         Movie tempMovie = movieService.findById(movieId);
+
+        if(tempMovie.getDirectorId() == directorId){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Movie is already added to this Director");
+        }
 
         tempDirector.addMovie(tempMovie);
         directorRepository.save(tempDirector);
@@ -74,7 +79,7 @@ public class DirectorServiceImpl implements DirectorService{
     }
 
     @Override
-    public String deleteMovieFromDirector(int directorId, int movieId) {
+    public String deleteMovieFromDirector(Long directorId, Long movieId) {
         Director tempDirector = this.findById(directorId);
         Movie tempMovie = movieService.findById(movieId);
 
