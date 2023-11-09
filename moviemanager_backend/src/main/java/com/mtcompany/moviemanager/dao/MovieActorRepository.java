@@ -11,6 +11,8 @@ public interface MovieActorRepository extends JpaRepository<MovieActor,Long> {
 
     List<MovieActor> findByActor_Id(Long id);
 
+    List<MovieActor> findByMovie_Id(Long id);
+
     boolean existsByActor_IdAndMovie_Id(Long actorId, Long movieId);
 
     MovieActor findByActor_IdAndMovie_Id(Long actorId, Long movieId);

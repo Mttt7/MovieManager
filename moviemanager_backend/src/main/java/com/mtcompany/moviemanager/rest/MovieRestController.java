@@ -1,6 +1,7 @@
 package com.mtcompany.moviemanager.rest;
 
 
+import com.mtcompany.moviemanager.entity.Actor;
 import com.mtcompany.moviemanager.entity.Director;
 import com.mtcompany.moviemanager.entity.Movie;
 import com.mtcompany.moviemanager.entity.MovieActor;
@@ -78,6 +79,12 @@ public class MovieRestController {
     @PatchMapping("movies/{movieId}/{categoryId}")
     public Movie addCategoryToMovie(@PathVariable Long movieId, @PathVariable Long categoryId){
         return movieService.addCategoryToMovie(movieId,categoryId);
+    }
+
+    //GET ACTORS FEATURED IN MOVIE
+    @GetMapping("/movies/{movieId}/actors")
+    public List<Actor> getActorsByMovieId(@PathVariable Long movieId){
+        return this.movieService.getActorsByMovieId(movieId);
     }
 
 

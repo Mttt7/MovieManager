@@ -1,5 +1,6 @@
 package com.mtcompany.moviemanager.service;
 
+import com.mtcompany.moviemanager.entity.Actor;
 import com.mtcompany.moviemanager.entity.Movie;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface MovieService {
 
 
     Movie addCategoryToMovie(Long movieId, Long categoryId);
+
+    List<Actor> getActorsByMovieId(Long movieId);
 }

@@ -1,22 +1,28 @@
 package com.mtcompany.moviemanager.service;
 
+import com.mtcompany.moviemanager.dao.MovieActorRepository;
 import com.mtcompany.moviemanager.dao.MovieRepository;
+import com.mtcompany.moviemanager.entity.Actor;
 import com.mtcompany.moviemanager.entity.Category;
 import com.mtcompany.moviemanager.entity.Movie;
+import com.mtcompany.moviemanager.entity.MovieActor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements MovieService{
 
     private MovieRepository movieRepository;
+    private MovieActorRepository movieActorRepository;
     private CategoryService categoryService;
 
 
-    public MovieServiceImpl(MovieRepository movieRepository, CategoryService categoryService) {
+    public MovieServiceImpl(MovieRepository movieRepository, MovieActorRepository movieActorRepository, CategoryService categoryService) {
         this.movieRepository = movieRepository;
+        this.movieActorRepository = movieActorRepository;
         this.categoryService = categoryService;
     }
 
@@ -59,6 +65,11 @@ public class MovieServiceImpl implements MovieService{
         movieRepository.save(tempMovie);
 
         return tempMovie;
+    }
+
+    @Override
+    public List<Actor> getActorsByMovieId(Long movieId) {
+        return this.movieActorRepository.findByMovie_Id(movieId).stream().map(MovieActor::getActor).collect(Collectors.toList());
     }
 
 
