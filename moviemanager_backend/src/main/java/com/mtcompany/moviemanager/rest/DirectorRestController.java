@@ -1,5 +1,7 @@
 package com.mtcompany.moviemanager.rest;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mtcompany.moviemanager.Views;
 import com.mtcompany.moviemanager.entity.Director;
 import com.mtcompany.moviemanager.entity.Movie;
 import com.mtcompany.moviemanager.service.DirectorService;
@@ -18,12 +20,14 @@ public class DirectorRestController {
     }
 
     //GET ALL DIRECTORS
+    @JsonView(Views.Summary.class)
     @GetMapping("/directors")
     public List<Director> findAll(){
         return directorService.findAll();
     }
 
     //GET DIRECTOR BY ID
+    @JsonView(Views.Detailed.class)
     @GetMapping("/directors/{directorId}")
     public Director findDirectorById(@PathVariable Long directorId){
         Director theDirector = directorService.findById(directorId);
