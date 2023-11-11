@@ -1,0 +1,5 @@
+<div *ngFor="let director of directors">
+    <a [routerLink]="['/directors', director.id]">
+        <div>{{director.firstName}} {{director.lastName}}</div>
+    </a>
+</div>

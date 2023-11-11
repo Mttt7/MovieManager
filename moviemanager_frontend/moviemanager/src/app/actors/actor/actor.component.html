@@ -1,0 +1,18 @@
+<div class="actor">
+    <div class="firstName">{{actor?.firstName}}</div>
+    <div class="lastName">{{actor?.lastName}}</div>
+    <div class="birthDate">{{actor?.birthDate}}</div>
+    <div class="description">{{actor?.description}}</div>
+
+    <div class="movies">
+        Movies:
+        <ul>
+            <li *ngFor="let movie of actor?.movies">
+                <a [routerLink]="['/movies', movie.id]">
+                    <div class="title">{{movie?.title}} ({{movie.productionYear}})</div>
+                </a>
+
+            </li>
+        </ul>
+    </div>
+</div>
