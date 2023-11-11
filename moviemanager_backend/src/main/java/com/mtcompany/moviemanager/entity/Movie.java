@@ -1,5 +1,7 @@
 package com.mtcompany.moviemanager.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mtcompany.moviemanager.Views;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,22 +18,29 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @JsonView(Views.Detailed.class)
     private Long id;
 
+
     @Column(name = "title")
+    @JsonView(Views.Detailed.class)
     private String title;
 
     @Column(name = "production_year")
+    @JsonView(Views.Detailed.class)
     private int productionYear;
 
     @Column(name = "description")
+    @JsonView(Views.Detailed.class)
     private String description;
 
     @Column(name = "img_path")
+    @JsonView(Views.Detailed.class)
     private String imgPath;
 
 
     @Column(name = "director_id")
+    @JsonView(Views.Detailed.class)
     private Long directorId;
 
     @Column(name = "category_id")
