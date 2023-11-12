@@ -1,5 +1,7 @@
-<div *ngFor="let actor of actors">
-    <a [routerLink]="['/actors', actor.id]">
-        <div>{{actor?.firstName}} {{actor?.lastName}}</div>
-    </a>
+<div class="container">
+    <div *ngFor="let actor of actors">
+        <a [routerLink]="['/actors', actor.id]">
+            <div>{{actor?.firstName}} {{actor?.lastName}}</div>
+        </a>
+    </div>
 </div>

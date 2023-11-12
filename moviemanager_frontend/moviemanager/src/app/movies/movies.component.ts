@@ -5,7 +5,7 @@ import { Movie } from '../models/movie.model';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrl: './movies.component.scss'
+  styleUrl: '../list.scss'
 })
 export class MoviesComponent {
 

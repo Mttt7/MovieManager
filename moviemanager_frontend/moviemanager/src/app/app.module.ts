@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { DirectorsComponent } from './directors/directors.component';
 import { ActorsComponent } from './actors/actors.component';
 import { ActorComponent } from './actors/actor/actor.component';
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
@@ -30,7 +31,8 @@ const routes: Routes = [
     DirectorComponent,
     DirectorsComponent,
     ActorComponent,
-    ActorsComponent
+    ActorsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 @Component({
   selector: 'app-director',
   templateUrl: './director.component.html',
-  styleUrl: './director.component.scss'
+  styleUrl: '../../person.scss'
 })
 export class DirectorComponent {
   id: number = 0
@@ -27,5 +27,18 @@ export class DirectorComponent {
       this.director = data as Director
     }
     )
+  }
+  getAge() {
+    if (this.director && this.director.birthDate) {
+      const today = new Date()
+      const birthDate = new Date(this.director.birthDate)
+      let age = today.getFullYear() - birthDate.getFullYear()
+      const month = today.getMonth() - birthDate.getMonth()
+      if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+        age--
+      }
+      return age
+    }
+    return 0
   }
 }

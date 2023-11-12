@@ -5,7 +5,7 @@ import { DirectorService } from '../services/director.service';
 @Component({
   selector: 'app-directors',
   templateUrl: './directors.component.html',
-  styleUrl: './directors.component.scss'
+  styleUrl: '../list.scss'
 })
 export class DirectorsComponent {
 

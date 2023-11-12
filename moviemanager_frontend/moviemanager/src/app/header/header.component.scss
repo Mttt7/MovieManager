@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    background-color: rgb(41, 40, 40);
+    color: white;
+
+    padding: 1.4rem;
+    padding-left: 0;
+    padding-right: 0;
+    //width: 100%;
+
+    font-size: 2rem;
+
+}
+
+
+
+.menu {
+    margin-right: 50%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    color: white;
+
+}

@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100%;
+    background-color: rgb(204, 204, 204);
+
+    font-size: 2rem;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.2rem;
+    margin-top: 3rem;
+    width: 50%;
+    padding: .6rem;
+
+    color: white;
+    background-color: rgb(41, 40, 40);
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.description {
+    font-style: italic;
+    font-weight: 100;
+}
+
+.movies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+}
+
+.name {
+    display: flex;
+    gap: .4rem;
+
+    .lastName {
+        font-weight: 600;
+    }
+}

@@ -1,24 +1,31 @@
-<div class="movie">
-    <div>{{movie?.title}}</div>
-    <div><!-- {{movie.category}} --></div>
-    <div class="description">{{movie?.description}}</div>
-    <div>Production Year: {{movie?.productionYear}}</div>
+<div class="container">
 
-    <div *ngIf="movie?.directorId">
-        Director:
-        <a [routerLink]="['/directors', movie.directorId]">
-            <div class="director">{{movie?.director?.firstName}} {{movie?.director?.lastName}}</div>
-        </a>
-    </div>
+    <div class="movie">
+        <div class="summary">
+            <div>{{movie?.title}} ({{movie?.productionYear}})</div>
+            <div><!-- {{movie.category}} --></div>
+            <div class="description">{{movie?.description}}</div>
 
-    <div class="actors">Actors:
-        <div *ngFor="let actor of movie?.actors">
-            <a [routerLink]="['/actors', actor.id]">
-                <div>{{actor.firstName}} {{actor.lastName}}</div>
+        </div>
+
+
+        <div class="director" *ngIf="movie?.directorId">
+            <div>Director:</div>
+            <a [routerLink]="['/directors', movie.directorId]">
+                <div class="director">{{movie?.director?.firstName}} {{movie?.director?.lastName}}</div>
             </a>
         </div>
+
+        <div class="actors">
+            <div>Actors:</div>
+            <div *ngFor="let actor of movie?.actors">
+                <a [routerLink]="['/actors', actor.id]">
+                    <div>{{actor.firstName}} {{actor.lastName}}</div>
+                </a>
+            </div>
+        </div>
+
+
+
     </div>
-
-
-
 </div>

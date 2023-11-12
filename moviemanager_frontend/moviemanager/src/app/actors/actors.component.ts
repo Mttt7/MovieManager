@@ -5,7 +5,7 @@ import { ActorService } from '../services/actor.service';
 @Component({
   selector: 'app-actors',
   templateUrl: './actors.component.html',
-  styleUrl: './actors.component.scss'
+  styleUrl: '../list.scss'
 })
 export class ActorsComponent {
   actors: Actor[] = []
