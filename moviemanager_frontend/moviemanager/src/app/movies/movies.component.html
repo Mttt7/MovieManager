@@ -4,4 +4,30 @@
             <div class="title">{{movie.title}}</div>
         </a>
     </div>
+    <div class="add-movie">
+        <form [formGroup]="myForm" (ngSubmit)="onMovieAdded()">
+            <div class="text">Add new movie</div>
+            <mat-form-field class="title-form-input">
+                <mat-label>title</mat-label>
+                <input matInput value="" formControlName="title">
+            </mat-form-field>
+
+
+            <mat-form-field class="description-form-input">
+                <mat-label>description</mat-label>
+                <textarea matInput value="" formControlName="description"></textarea>
+            </mat-form-field>
+
+
+            <mat-form-field class="production-year-form-input">
+                <mat-label>production year</mat-label>
+                <input matInput value="" formControlName="productionYear">
+                <mat-error *ngIf="myForm.get('productionYear').errors?.['rangeError']">
+                    Wartość musi być między 1888 a 2050.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Add</button>
+        </form>
+    </div>
 </div>
