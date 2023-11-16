@@ -16,6 +16,9 @@
             </a>
         </div>
 
+
+
+
         <div class="actors">
             <div>Actors:</div>
             <div *ngFor="let actor of movie?.actors">
@@ -23,6 +26,19 @@
                     <div>{{actor.firstName}} {{actor.lastName}}</div>
                 </a>
             </div>
+
+            <form (ngSubmit)="addActor()">
+                <mat-form-field>
+                    <mat-label>Add Actor</mat-label>
+                    <mat-select [(ngModel)]="selectedActorId" name="actor">
+                        <mat-option *ngFor="let actor of actors" [value]="actor.id">{{actor.firstName}}
+                            {{actor.lastName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Add</button>
+            </form>
+
+
         </div>
 
 

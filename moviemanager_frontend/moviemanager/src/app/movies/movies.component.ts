@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 
 
-
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',

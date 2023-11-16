@@ -8,6 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,7 +59,8 @@ const routes: Routes = [
     MatFormFieldModule,
     MatButtonModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

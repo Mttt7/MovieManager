@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Actor } from '../models/actor.model';
 import { of, switchMap } from 'rxjs';
 import { Movie } from '../models/movie.model';
+import { MovieService } from './movie.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ActorService {
   private actorUrl = 'http://localhost:8080/api/actors'
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private movieService: MovieService) { }
 
 
   getAllActors() {
@@ -36,7 +37,9 @@ export class ActorService {
     )
   }
 
-
+  assignMovieToActor(actorId: number, movieId: number) {
+    return this.http.patch(`${this.actorUrl}/${actorId}/${movieId}`, {})
+  }
 
 
 }

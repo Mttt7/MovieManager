@@ -41,4 +41,10 @@ export class MovieService {
     return this.http.get<Actor[]>(`${this.movieUrl}/${id}/actors`)
   }
 
+  addMovie(movie: Movie) {
+    return this.http.post(this.movieUrl, movie)
+  }
+
+
+
 }
