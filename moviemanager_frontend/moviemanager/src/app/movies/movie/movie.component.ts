@@ -4,6 +4,7 @@ import { MovieService } from '../../services/movie.service';
 import { ActivatedRoute } from '@angular/router';
 import { Actor } from '../../models/actor.model';
 import { ActorService } from '../../services/actor.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-movie',
@@ -13,13 +14,14 @@ import { ActorService } from '../../services/actor.service';
 export class MovieComponent {
 
 
+
   id: number = 0
   movie: Movie = null
   actors: Actor[]
   selectedActorId: number
 
   constructor(private movieService: MovieService, private actorService: ActorService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
@@ -54,5 +56,27 @@ export class MovieComponent {
       this.loadActorsssociatedToMovie()
     })
   }
+
+  deleteActor(actorId: number) {
+    this.actorService.removeMovieFromActor(actorId, this.id).subscribe(() => {
+      this.loadActorsssociatedToMovie()
+    })
+
+    let snackBarRef = this._snackBar.open('Actor Deleted', 'Undo', {
+      duration: 3000
+    })
+    snackBarRef.onAction().subscribe(() => {
+      this.actorService.assignMovieToActor(actorId, this.id).subscribe(data => {
+        console.log(data)
+        this.loadActorsssociatedToMovie()
+      })
+    });
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
 
 }

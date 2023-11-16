@@ -21,10 +21,14 @@
 
         <div class="actors">
             <div>Actors:</div>
-            <div *ngFor="let actor of movie?.actors">
+            <div *ngFor="let actor of movie?.actors" class="actor">
                 <a [routerLink]="['/actors', actor.id]">
-                    <div>{{actor.firstName}} {{actor.lastName}}</div>
+                    <div>
+                        {{actor.firstName}} {{actor.lastName}}
+
+                    </div>
                 </a>
+                <div (click)="deleteActor(actor.id)" class="deleteButton"> X </div>
             </div>
 
             <form (ngSubmit)="addActor()">
@@ -32,7 +36,7 @@
                     <mat-label>Add Actor</mat-label>
                     <mat-select [(ngModel)]="selectedActorId" name="actor">
                         <mat-option *ngFor="let actor of actors" [value]="actor.id">{{actor.firstName}}
-                            {{actor.lastName}}</mat-option>
+                            {{actor.lastName}} </mat-option>
                     </mat-select>
                 </mat-form-field>
                 <button mat-raised-button color="primary" type="submit">Add</button>

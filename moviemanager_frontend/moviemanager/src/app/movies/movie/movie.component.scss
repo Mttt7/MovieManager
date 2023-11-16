@@ -50,6 +50,24 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+
+        .actor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            .deleteButton {
+                color: red;
+                font-size: 1.2rem;
+            }
+
+            .deleteButton:hover {
+                cursor: pointer;
+                color: rgb(117, 3, 3);
+                transform: scale(1.1);
+            }
+        }
     }
 
 }

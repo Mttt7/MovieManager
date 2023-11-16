@@ -41,5 +41,8 @@ export class ActorService {
     return this.http.patch(`${this.actorUrl}/${actorId}/${movieId}`, {})
   }
 
+  removeMovieFromActor(actorId: number, movieId: number) {
+    return this.http.delete(`${this.actorUrl}/${actorId}/${movieId}`)
+  }
 
 }
