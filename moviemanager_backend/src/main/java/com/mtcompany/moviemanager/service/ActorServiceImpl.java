@@ -1,5 +1,6 @@
 package com.mtcompany.moviemanager.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mtcompany.moviemanager.dao.ActorRepository;
 import com.mtcompany.moviemanager.dao.MovieActorRepository;
 import com.mtcompany.moviemanager.dao.MovieRepository;
@@ -87,16 +88,27 @@ public class ActorServiceImpl implements ActorService{
     public String removeMovieFromActor(Long actorId, Long movieId) {
         Actor tempActor = null;
         Movie tempMovie = null;
+
+
         boolean exists = movieActorRepository.existsByActor_IdAndMovie_Id(actorId,movieId);
 
         if (exists) {
             System.out.println("EXISTS!!!!");
             MovieActor tempMovieActor = movieActorRepository.findByActor_IdAndMovie_Id(actorId,movieId);
+            System.out.println(tempMovieActor);
             movieActorRepository.delete(tempMovieActor);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String responseJson = objectMapper.createObjectNode()
+                    .put("message", "Movie removed from actor")
+                    .put("actorId", actorId)
+                    .put("movieId", movieId)
+                    .toString();
+
+            return responseJson;
         } else {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Actor is no assigned to this movie or has  already been deleted ");
         }
 
-        return "Movie id-"+movieId+" removed from actor id-"+actorId;
+       // return ("Movie id-"+movieId+" removed from actor id-"+actorId);
     }
 }

@@ -19,15 +19,26 @@ public class MovieActor {
     @JoinColumn(name = "actor_id")
     private Actor actor;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
     public MovieActor() {
     }
 
+    @Override
+    public String toString() {
+        return "MovieActor{" +
+                "id=" + id +
+                ", actor=" + actor +
+                ", movie=" + movie +
+                '}';
+    }
+
     public MovieActor(Actor actor, Movie movie) {
         this.actor = actor;
         this.movie = movie;
+
+
     }
 }
