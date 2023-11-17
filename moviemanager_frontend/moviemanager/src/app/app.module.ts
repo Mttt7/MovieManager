@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -26,6 +27,7 @@ import { ActorsComponent } from './actors/actors.component';
 import { ActorComponent } from './actors/actor/actor.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { YesnoDialogComponent } from './yesno.dialog/yesno.dialog.component';
 
 const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
@@ -45,7 +47,8 @@ const routes: Routes = [
     DirectorsComponent,
     ActorComponent,
     ActorsComponent,
-    HeaderComponent
+    HeaderComponent,
+    YesnoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ const routes: Routes = [
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

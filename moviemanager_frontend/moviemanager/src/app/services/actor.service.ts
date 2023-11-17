@@ -42,6 +42,10 @@ export class ActorService {
     return this.http.post(this.actorUrl, actor)
   }
 
+  deleteActor(id: number) {
+    return this.http.delete(`${this.actorUrl}/${id}`)
+  }
+
   assignMovieToActor(actorId: number, movieId: number) {
     return this.http.patch(`${this.actorUrl}/${actorId}/${movieId}`, {})
   }

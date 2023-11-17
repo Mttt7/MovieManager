@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Actor } from '../../models/actor.model';
 import { ActorService } from '../../services/actor.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '../../models/movie.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MovieService } from '../../services/movie.service';
+import { DialogService } from '../../services/dialog.service';
+
+
 
 @Component({
   selector: 'app-actor',
@@ -13,9 +16,6 @@ import { MovieService } from '../../services/movie.service';
 })
 export class ActorComponent {
 
-
-
-
   id: number = 0
   actor: Actor = null
 
@@ -23,8 +23,8 @@ export class ActorComponent {
   selectedMovieId: number = -1
 
 
-  constructor(private actorService: ActorService, private movieService: MovieService,
-    private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private actorService: ActorService, private movieService: MovieService,
+    private route: ActivatedRoute, private _snackBar: MatSnackBar, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
@@ -67,6 +67,21 @@ export class ActorComponent {
         this.loadActor()
       })
     });
+  }
+
+  deleteActor() {
+    this.dialogService.openDialog().subscribe(result => {
+      if (result === 'delete') {
+        this.actorService.deleteActor(this.id).subscribe(() => {
+          this._snackBar.open('Actor Deleted', 'OK', {
+            duration: 3000
+          })
+          this.router.navigate(['/actors'])
+        })
+
+      }
+    })
+
   }
 
 
