@@ -17,14 +17,33 @@
         <div class="movies">
             <div>Movies:</div>
             <ul>
-                <li *ngFor="let movie of actor?.movies">
+                <li *ngFor="let movie of actor?.movies" class="movie">
                     <a [routerLink]="['/movies', movie.id]">
                         <div class="title">{{movie?.title}} ({{movie.productionYear}})</div>
                     </a>
-
+                    <div (click)="deleteMovie(movie.id)" class="deleteButton"> X </div>
                 </li>
             </ul>
         </div>
+
+
+        <form (ngSubmit)="addMovie()">
+            <mat-form-field>
+                <mat-label>Add Movie</mat-label>
+                <mat-select [(ngModel)]="selectedMovieId" name="movie">
+                    <mat-option *ngFor="let movie of movies" [value]="movie.id">{{movie.title}}
+                        ({{movie.productionYear}})</mat-option>
+
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Add</button>
+        </form>
+
+
+
+
+
+
     </div>
 
 
