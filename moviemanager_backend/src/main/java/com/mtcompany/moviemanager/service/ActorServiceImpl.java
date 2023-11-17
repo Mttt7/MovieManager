@@ -53,6 +53,11 @@ public class ActorServiceImpl implements ActorService{
 
     @Override
     public void deleteById(Long theId) {
+        List<MovieActor> tempMovieActors = movieActorRepository.findByActor_Id(theId);
+        tempMovieActors.forEach(mA -> {
+            movieActorRepository.delete(mA);
+        });
+        
         actorRepository.deleteById(theId);
     }
 

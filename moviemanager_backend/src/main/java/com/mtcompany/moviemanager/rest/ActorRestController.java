@@ -51,14 +51,15 @@ public class ActorRestController {
 
     //DELETE ACTOR
     @DeleteMapping("/actors/{actorId}")
-    public String deleteActor(@PathVariable Long actorId){
+    public void deleteActor(@PathVariable Long actorId){
         Actor tempActor = actorService.findById(actorId);
 
         if (tempActor == null) {
             throw new RuntimeException("Actor id not found - " + actorId);
         }
         actorService.deleteById(actorId);
-        return "Deleted Actor id - " + actorId;
+
+        //return "Deleted Actor id - " + actorId;
     }
 
     //GET MOVIES ASSOCIATED TO ACTOR
