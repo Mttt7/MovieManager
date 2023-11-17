@@ -19,4 +19,11 @@ export class DirectorService {
     return this.http.get<Director>(`${this.apiUrl}/${id}`)
   }
 
+  assignMovieToDirector(directorId: number, movieId: number) {
+    return this.http.patch(`${this.apiUrl}/${directorId}/${movieId}`, {})
+  }
+
+  removeMovieFromDirector(directorId: number, movieId: number) {
+    return this.http.delete(`${this.apiUrl}/${directorId}/${movieId}`)
+  }
 }

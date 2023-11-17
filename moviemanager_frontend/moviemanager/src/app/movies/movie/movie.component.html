@@ -9,11 +9,27 @@
         </div>
 
 
-        <div class="director" *ngIf="movie?.directorId">
+        <div class="director">
             <div>Director:</div>
-            <a [routerLink]="['/directors', movie.directorId]">
+            <a [routerLink]="['/directors', movie?.directorId]">
                 <div class="director">{{movie?.director?.firstName}} {{movie?.director?.lastName}}</div>
             </a>
+            <div *ngIf="movie?.directorId" (click)="deleteDirector(movie.director.id)" class="deleteButton"> X </div>
+
+
+
+
+
+            <form (ngSubmit)="addDirector()" *ngIf="!movie?.directorId">
+                <mat-form-field>
+                    <mat-select [(ngModel)]="selectedDirectorId" name="actor">
+                        <mat-option *ngFor="let director of directors" [value]="director.id">{{director.firstName}}
+                            {{director.lastName}} </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Add</button>
+            </form>
+
         </div>
 
 

@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Actor } from '../../models/actor.model';
 import { ActorService } from '../../services/actor.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DirectorService } from '../../services/director.service';
+import { Director } from '../../models/director.model';
 
 @Component({
   selector: 'app-movie',
@@ -15,17 +17,31 @@ export class MovieComponent {
 
 
 
+
+
   id: number = 0
   movie: Movie = null
   actors: Actor[]
+  directors: Director[]
   selectedActorId: number = -1
+  directorAssigned: boolean = false
+  selectedDirectorId: number = -1
 
   constructor(private movieService: MovieService, private actorService: ActorService,
+    private directorService: DirectorService,
     private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
     this.loadMovie()
+
+  }
+  isDirectorAssigned() {
+    if (this.movie?.directorId != null) {
+      this.directorAssigned = true
+    } else {
+      this.directorAssigned = false
+    }
   }
   loadActorsAssociatedToMovie() {
     this.movieService.getActorsByMovieId(this.id).subscribe(data => {
@@ -46,7 +62,8 @@ export class MovieComponent {
     this.movieService.getMovieById(this.id).subscribe(data => {
       this.movie = data as Movie
       this.loadActorsAssociatedToMovie()
-
+      this.isDirectorAssigned()
+      this.loadDirectors()
     })
   }
 
@@ -74,6 +91,52 @@ export class MovieComponent {
       })
     });
   }
+
+  loadDirectors() {
+    this.directorService.getDirectors().subscribe(data => {
+      this.directors = data as Director[]
+    })
+  }
+
+  addDirector() {
+    if (this.directorAssigned || this.selectedDirectorId == -1) return
+    this.directorService.assignMovieToDirector(this.selectedDirectorId, this.id).subscribe(data => {
+      console.log(data)
+      this.loadMovie()
+      this.directorAssigned = true
+    })
+    this.selectedDirectorId = -1
+  }
+
+  deleteDirector(directorId: number) {
+    this.isDirectorAssigned()
+    if (!this.directorAssigned) return
+    this.directorService.removeMovieFromDirector(directorId, this.id).subscribe(() => {
+      this.loadMovie()
+      this.directorAssigned = false
+    })
+
+
+
+    let snackBarRef = this._snackBar.open('Director Deleted', 'Undo', {
+      duration: 3000
+    })
+    snackBarRef.onAction().subscribe(() => {
+      this.directorService.assignMovieToDirector(directorId, this.id).subscribe(data => {
+        console.log(data)
+        this.loadMovie()
+        this.directorAssigned = true
+
+      })
+
+    });
+
+
+
+  }
+
+
+
 
 
   openSnackBar(message: string, action: string) {
