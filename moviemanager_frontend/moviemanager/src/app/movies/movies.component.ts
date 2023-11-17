@@ -44,7 +44,6 @@ export class MoviesComponent {
     }
 
     const movie = { title, description, productionYear }
-    console.log(movie)
     this.movieService.addMovie(movie).subscribe(data => {
       console.log(data)
       this.loadAllMovies()

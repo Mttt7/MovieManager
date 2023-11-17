@@ -4,4 +4,44 @@
             <div>{{actor?.firstName}} {{actor?.lastName}}</div>
         </a>
     </div>
+
+
+    <div class="add-actor">
+        <form [formGroup]="myForm" (ngSubmit)="onActorAdded()">
+            <div class="text">Add new actor</div>
+
+            <mat-form-field class="first-name-form-input">
+                <mat-label>first name</mat-label>
+                <input matInput value="" formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field class="last-name-form-input">
+                <mat-label>last name</mat-label>
+                <input matInput value="" formControlName="lastName">
+            </mat-form-field>
+
+            <mat-form-field class="description-form-input">
+                <mat-label>description</mat-label>
+                <textarea matInput value="" formControlName="description"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="birth-date-form-input">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="myForm.get('birthDate').hasError('rangeError')">
+                    Value must be between 1788 and 2020.
+                </mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!myForm.valid">Add</button>
+        </form>
+    </div>
+
+
+
+
+
+
 </div>

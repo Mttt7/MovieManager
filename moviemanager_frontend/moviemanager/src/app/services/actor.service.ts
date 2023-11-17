@@ -37,6 +37,11 @@ export class ActorService {
     )
   }
 
+
+  addActor(actor: Actor) {
+    return this.http.post(this.actorUrl, actor)
+  }
+
   assignMovieToActor(actorId: number, movieId: number) {
     return this.http.patch(`${this.actorUrl}/${actorId}/${movieId}`, {})
   }
