@@ -1,5 +1,6 @@
 package com.mtcompany.moviemanager.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mtcompany.moviemanager.dao.DirectorRepository;
 import com.mtcompany.moviemanager.entity.Director;
 import com.mtcompany.moviemanager.entity.Movie;
@@ -92,13 +93,23 @@ public class DirectorServiceImpl implements DirectorService{
         if(exists){
             tempDirector.getMovies().remove(tempMovie);
             tempMovie.setDirectorId(null);
+            directorRepository.save(tempDirector);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String responseJson = objectMapper.createObjectNode()
+                    .put("message", "Director removed from movie")
+                    .put("mov" +
+                            "ieId", movieId)
+                    .toString();
+            return responseJson;
+
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not found or has already been deleted");
         }
 
-        directorRepository.save(tempDirector);
 
-        return "Movie id-"+movieId+" deleted from director id-"+directorId;
+
+        //return "Movie id-"+movieId+" deleted from director id-"+directorId;
     }
 
 
