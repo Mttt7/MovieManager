@@ -50,6 +50,14 @@ public class DirectorServiceImpl implements DirectorService{
 
     @Override
     public void deleteById(Long theId) {
+        Director tempDirector = this.findById(theId);
+        List<Movie> tempMovies = new ArrayList<>(tempDirector.getMovies());
+        System.out.println(tempDirector.getMovies());
+        for (Movie m:
+             tempMovies) {
+            this.deleteMovieFromDirector(theId,m.getId());
+        }
+
         directorRepository.deleteById(theId);
     }
 

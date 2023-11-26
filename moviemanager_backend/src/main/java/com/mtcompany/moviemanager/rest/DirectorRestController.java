@@ -57,7 +57,7 @@ public class DirectorRestController {
 
     //DELETE DIRECTOR
     @DeleteMapping("/directors/{directorId}")
-    public String deleteDirector(@PathVariable Long directorId){
+    public void deleteDirector(@PathVariable Long directorId){
         Director tempDirector = directorService.findById(directorId);
 
         if (tempDirector == null) {
@@ -66,7 +66,7 @@ public class DirectorRestController {
 
         directorService.deleteById(directorId);
 
-        return "Deleted Director id - " + directorId;
+        //return "Deleted Director id - " + directorId;
     }
 
     //GET MOVIES OF DIRECTOR

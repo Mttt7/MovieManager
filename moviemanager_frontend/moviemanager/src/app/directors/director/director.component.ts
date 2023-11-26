@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DirectorService } from '../../services/director.service';
 import { Director } from '../../models/director.model';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActorService } from '../../services/actor.service';
 import { Movie } from '../../models/movie.model';
 import { MovieService } from '../../services/movie.service';
+import { DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-director',
@@ -15,13 +16,14 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['../../person.scss', './director.component.scss']
 })
 export class DirectorComponent {
+
   selectedMovieId: number = -1
   movies: Movie[]
   id: number = 0
   director: Director = null
-  constructor(private directorService: DirectorService,
+  constructor(private directorService: DirectorService, private router: Router,
     private movieService: MovieService,
-    private route: ActivatedRoute, private _snackBar: MatSnackBar) { }
+    private route: ActivatedRoute, private _snackBar: MatSnackBar, private dialogService: DialogService) { }
 
 
 
@@ -70,6 +72,20 @@ export class DirectorComponent {
         this.loadDirector()
       })
     });
+  }
+
+  deleteDirector() {
+    this.dialogService.openDialog().subscribe(result => {
+      if (result === 'delete') {
+        this.directorService.deleteDirector(this.id).subscribe(() => {
+          this._snackBar.open('Director Deleted', 'OK', {
+            duration: 3000
+          })
+          this.router.navigate(['/directors'])
+        })
+
+      }
+    })
   }
 
 
