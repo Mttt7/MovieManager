@@ -8,6 +8,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DirectorService } from '../../services/director.service';
 import { Director } from '../../models/director.model';
 import { DialogService } from '../../services/dialog.service';
+import { CategoryService } from '../../services/category.service';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-movie',
@@ -15,7 +17,6 @@ import { DialogService } from '../../services/dialog.service';
   styleUrl: './movie.component.scss'
 })
 export class MovieComponent {
-
   id: number = 0
   movie: Movie = null
   actors: Actor[]
@@ -23,15 +24,17 @@ export class MovieComponent {
   selectedActorId: number = -1
   directorAssigned: boolean = false
   selectedDirectorId: number = -1
+  category: Category = null
+  selectedCategoryId: number = -1
+  categories: Category[] = []
 
   constructor(private movieService: MovieService, private actorService: ActorService,
-    private directorService: DirectorService, private router: Router,
+    private directorService: DirectorService, private router: Router, private categoryService: CategoryService,
     private route: ActivatedRoute, private _snackBar: MatSnackBar, private dialogService: DialogService) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
     this.loadMovie()
-
   }
   isDirectorAssigned() {
     if (this.movie?.directorId != null) {
@@ -61,6 +64,8 @@ export class MovieComponent {
       this.loadActorsAssociatedToMovie()
       this.isDirectorAssigned()
       this.loadDirectors()
+      this.loadMovieCategory()
+      this.getCategories()
     })
   }
 
@@ -83,7 +88,6 @@ export class MovieComponent {
     })
     snackBarRef.onAction().subscribe(() => {
       this.actorService.assignMovieToActor(actorId, this.id).subscribe(data => {
-        console.log(data)
         this.loadActorsAssociatedToMovie()
       })
     });
@@ -113,8 +117,6 @@ export class MovieComponent {
       this.directorAssigned = false
     })
 
-
-
     let snackBarRef = this._snackBar.open('Director Deleted', 'Undo', {
       duration: 3000
     })
@@ -123,13 +125,8 @@ export class MovieComponent {
         console.log(data)
         this.loadMovie()
         this.directorAssigned = true
-
       })
-
     });
-
-
-
   }
 
   deleteMovie() {
@@ -141,9 +138,46 @@ export class MovieComponent {
           })
           this.router.navigate(['/movies'])
         })
-
       }
     })
+  }
+
+
+  getCategories(): any {
+    this.categoryService.getAllCategories().subscribe(data => {
+      this.categories = data as Category[]
+    })
+  }
+  addCategory() {
+    if (this.selectedCategoryId === -1) return
+    this.movieService.assignCategoryToMovie(this.id, this.selectedCategoryId).subscribe(data => {
+      this.loadMovie()
+    })
+  }
+
+  loadMovieCategory() {
+    if (this.movie?.categoryId) {
+      this.categoryService.getCategoryById(this.movie.categoryId).subscribe(data => {
+        this.category = data as Category
+      })
+    } else {
+      this.category = null
+    }
+  }
+
+  removeCategory() {
+    this.movieService.removeCategoryFromMovie(this.id).subscribe(() => {
+      this.loadMovie()
+    })
+
+    let snackBarRef = this._snackBar.open('Category Removed', 'Undo', {
+      duration: 3000
+    })
+    snackBarRef.onAction().subscribe(() => {
+      this.movieService.assignCategoryToMovie(this.id, this.selectedCategoryId).subscribe(data => {
+        this.loadMovie()
+      })
+    });
   }
 
 
@@ -151,6 +185,4 @@ export class MovieComponent {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action);
   }
-
-
 }

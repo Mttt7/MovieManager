@@ -18,4 +18,6 @@ public interface MovieService {
     Movie addCategoryToMovie(Long movieId, Long categoryId);
 
     List<Actor> getActorsByMovieId(Long movieId);
+
+    Movie removeCategoryFromMovie(Long movieId);
 }

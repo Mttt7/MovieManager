@@ -7,6 +7,7 @@ export interface Movie {
     productionYear: number;
     description: string;
     imgPath?: string;
+    categoryId?: number;
     directorId?: number;
     director?: Director;
     actors?: Actor[];

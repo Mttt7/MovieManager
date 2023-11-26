@@ -86,6 +86,12 @@ public class MovieRestController {
         return movieService.addCategoryToMovie(movieId,categoryId);
     }
 
+    //REMOVE CATEGORY FROM MOVIE
+    @DeleteMapping("movies/{movieId}/removeCategory")
+    public Movie removeCategoryFromMovie(@PathVariable Long movieId){
+        return movieService.removeCategoryFromMovie(movieId);
+    }
+
     //GET ACTORS FEATURED IN MOVIE
     @GetMapping("/movies/{movieId}/actors")
     public List<Actor> getActorsByMovieId(@PathVariable Long movieId){

@@ -61,7 +61,7 @@ public class MovieServiceImpl implements MovieService{
         Movie tempMovie = this.findById(movieId);
         Category tempCategory = categoryService.findById(categoryId);
 
-        tempMovie.setCategoryId((long) tempCategory.getId());
+        tempMovie.setCategoryId(tempCategory.getId());
         movieRepository.save(tempMovie);
 
         return tempMovie;
@@ -69,6 +69,15 @@ public class MovieServiceImpl implements MovieService{
     @Override
     public List<Actor> getActorsByMovieId(Long movieId) {
         return this.movieActorRepository.findByMovie_Id(movieId).stream().map(MovieActor::getActor).collect(Collectors.toList());
+    }
+
+    @Override
+    public Movie removeCategoryFromMovie(Long movieId) {
+        Movie tempMovie = this.findById(movieId);
+        tempMovie.setCategoryId(null);
+        movieRepository.save(tempMovie);
+
+        return tempMovie;
     }
 
 

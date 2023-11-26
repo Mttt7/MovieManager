@@ -16,9 +16,15 @@ export class CategoryService {
     return this.http.get<Category[]>(this.categoriesUrl)
   }
 
+  getCategoryById(id: number): Observable<Category> {
+    return this.http.get<Category>(`${this.categoriesUrl}/${id}`)
+  }
+
   getCategoryWithMoviesById(id: number): Observable<Category> {
     return this.http.get<Category>(`${this.categoriesUrl}/${id}/movies`)
   }
+
+
 
 }
 

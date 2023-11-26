@@ -49,5 +49,11 @@ export class MovieService {
     return this.http.delete(`${this.movieUrl}/${id}`)
   }
 
+  assignCategoryToMovie(movieId: number, categoryId: number) {
+    return this.http.patch(`${this.movieUrl}/${movieId}/${categoryId}`, null)
+  }
+  removeCategoryFromMovie(movieId: number) {
+    return this.http.delete(`${this.movieUrl}/${movieId}/removeCategory`)
+  }
 
 }
