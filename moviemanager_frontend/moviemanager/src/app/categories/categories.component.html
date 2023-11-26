@@ -1,0 +1,19 @@
+<div class="container">
+
+    <div class="chips">
+        <mat-chip-listbox [(ngModel)]="selectedChips">
+            <mat-chip-option *ngFor="let category of categories" [selectable]="true" (click)="showMovies(category.id)">
+                {{ category.name }}
+            </mat-chip-option>
+        </mat-chip-listbox>
+    </div>
+
+
+    <div class="movies">
+        <div *ngFor="let movie of movies" class="movie">
+            <a [routerLink]="['/movies', movie.id]">
+                <div class="title">{{movie.title}}</div>
+            </a>
+        </div>
+
+    </div>

@@ -11,6 +11,7 @@ import { FormControl } from '@angular/forms';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 
@@ -28,6 +29,7 @@ import { ActorComponent } from './actors/actor/actor.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YesnoDialogComponent } from './yesno.dialog/yesno.dialog.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'directors/:id', component: DirectorComponent },
   { path: 'actors', component: ActorsComponent },
   { path: 'actors/:id', component: ActorComponent },
+  { path: 'categories', component: CategoriesComponent },
+
 ]
 
 @NgModule({
@@ -48,7 +52,8 @@ const routes: Routes = [
     ActorComponent,
     ActorsComponent,
     HeaderComponent,
-    YesnoDialogComponent
+    YesnoDialogComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +69,8 @@ const routes: Routes = [
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
