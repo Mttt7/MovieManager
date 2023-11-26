@@ -53,6 +53,7 @@ export class DirectorsComponent {
     this.directorService.addDirector(director).subscribe(data => {
       console.log(data)
       this.loadAllDirectors()
+      this.myForm.reset()
     })
 
   }

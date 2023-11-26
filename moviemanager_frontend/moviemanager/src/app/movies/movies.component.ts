@@ -47,6 +47,7 @@ export class MoviesComponent {
     this.movieService.addMovie(movie).subscribe(data => {
       console.log(data)
       this.loadAllMovies()
+      this.myForm.reset()
     })
 
 

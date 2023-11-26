@@ -47,6 +47,7 @@ export class ActorsComponent {
     this.actorService.addActor(actor).subscribe(data => {
       console.log(data)
       this.loadAllActors()
+      this.myForm.reset()
     })
 
   }
