@@ -2,7 +2,10 @@
 
     <div class="movie">
         <div class="summary">
-            <div>{{movie?.title}} ({{movie?.productionYear}})</div>
+            <div class="title">
+                <div>{{movie?.title}} ({{movie?.productionYear}})</div>
+                <div class="delete-movie-button" (click)="deleteMovie()">delete</div>
+            </div>
             <div><!-- {{movie.category}} --></div>
             <div class="description">{{movie?.description}}</div>
 

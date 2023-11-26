@@ -63,7 +63,7 @@ public class MovieRestController {
     //DELETE MOVIE
 
     @DeleteMapping("/movies/{movieId}")
-    public String deleteMovie(@PathVariable Long movieId){
+    public void deleteMovie(@PathVariable Long movieId){
         Movie tempMovie = movieService.findById(movieId);
 
         if (tempMovie == null) {
@@ -77,7 +77,7 @@ public class MovieRestController {
         }
         movieService.deleteById(movieId);
 
-        return "Deleted Movie id - " + movieId;
+        //return "Deleted Movie id - " + movieId;
     }
 
     //ADD CATEGORY TO A MOVIE

@@ -45,6 +45,9 @@ export class MovieService {
     return this.http.post(this.movieUrl, movie)
   }
 
+  deleteMovie(id: number) {
+    return this.http.delete(`${this.movieUrl}/${id}`)
+  }
 
 
 }
